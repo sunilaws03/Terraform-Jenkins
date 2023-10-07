@@ -15,7 +15,7 @@ pipeline {
                  script{
                         dir("terraform")
                         {
-                            git "https://github.com/yeshwanthlm/Terraform-Jenkins.git"
+                            git branch: 'main', credentialsId: 'c8070803-659f-493d-9c3f-ede7f2f00d12', url: 'https://github.com/sunilaws03/Terraform-Jenkins.git'
                         }
                     }
                 }
@@ -24,7 +24,7 @@ pipeline {
         stage('Plan') {
             steps {
                 sh 'pwd;cd terraform/ ; terraform init'
-                sh "pwd;cd terraform/ ; terraform plan -out tfplan"
+                sh 'pwd;cd terraform/ ; terraform plan -out tfplan'
                 sh 'pwd;cd terraform/ ; terraform show -no-color tfplan > tfplan.txt'
             }
         }
